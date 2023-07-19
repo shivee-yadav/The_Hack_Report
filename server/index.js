@@ -4,8 +4,15 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from "cors";
 import helmet from "helmet";
+//import connection from './Database/connection';
 
 const app = express();
+
+mongoose.connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    family: 4
+  }).then(() => console.log('DB Connected'));
+  
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
