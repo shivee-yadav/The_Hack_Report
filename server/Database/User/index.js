@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import bcrypt, { hash } from "bcryptjs";
+import  jwt  from "jsonwebtoken";
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -13,7 +15,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: 32
     },
-    hashed_password: {
+    password: {
         type: String,
         required: true
     },
@@ -30,5 +32,56 @@ const userSchema = new mongoose.Schema({
 },
 { timestamps : true }//automatically created and updated
 );
+
+userSchema.methods.generateJwtToken = function () {
+    return jwt.sign({user: this._id.toString()}, "TheHackReport");
+};
+
+userSchema.statics.findEmailAndPhone = async({email, phoneNumber}) => {
+    const checkUserByEmail = await UserModel.findOne({email});
+    
+    const checkUserByPhone = await UserModel.findOne({phoneNumber});
+
+    if(checkUserByEmail || checkUserByPhone){
+        throw new Error("User already Exists");
+    }
+
+    return false;
+
+};
+
+userSchema.statics.findEmailAndPassword = async({email, password}) => {
+    const user = await UserModel.findOne({email});
+    
+    if(!user){
+        throw new Error("User does not exists");
+    }
+
+    const doesPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if(!doesPasswordMatch){
+        throw new Error("Invalid Password");
+    }
+
+    return user;
+
+};
+
+userSchema.pre("save", function(next){
+    const user= this;
+
+    if(!user.isModified("password")) return next();
+
+    bcrypt.genSalt(8,(error,salt) => {
+        if(error) return next(error);
+
+        bcrypt.hash(user.password, salt , (error,hash) => {
+            if(error) return next(error);
+
+            user.password = hash;
+            return next();
+        });
+    });
+});
 
 export const UserModel = mongoose.model("Users", userSchema);
