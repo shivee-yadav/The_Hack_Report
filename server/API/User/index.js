@@ -36,7 +36,7 @@ Access         Public
 Method         PUT
 */
 
-Router.put("update/:_userId", async(req, res) => {
+Router.put("/update/:_userId", async(req, res) => {
     try {
 
         const {userId} = req.params;
@@ -45,10 +45,10 @@ Router.put("update/:_userId", async(req, res) => {
         const updateUserData = await UserModel.findByIdAndUpdate(
             userId,
             {
-                $set: userData
+                $set: userData,
             },
             {
-                new: true
+                new: true,
             }
         );
 
@@ -59,6 +59,6 @@ Router.put("update/:_userId", async(req, res) => {
         res.status(500).json({error: error.message});
         
     }
-})
+});
 
 export default Router;
