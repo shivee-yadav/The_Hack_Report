@@ -39,19 +39,22 @@ Method         PUT
 Router.put("/update/:_userId", async(req, res) => {
     try {
 
-        const {userId} = req.params;
-        const {userData} = req.body;
+        const { _userId } = req.params;
+        const { userData } = req.body;
+
+        
 
         const updateUserData = await UserModel.findByIdAndUpdate(
-            userId,
+            _userId,
             {
-                $set: userData,
+                $set: userData
             },
             {
-                new: true,
+                new: true
             }
         );
 
+    
         return res.json({ user: updateUserData});
         
     } catch (error) {
