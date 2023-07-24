@@ -15,7 +15,7 @@ function App() {
       <Faq />
       <Question />
       <Subscribe />
-      <UI />
+      
       <Footer />
 
     </main>
