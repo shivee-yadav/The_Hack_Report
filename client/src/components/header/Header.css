@@ -35,8 +35,12 @@ h1 span:nth-child(3) {
 }
 
 .header-left p {
-    
+     
     margin: 3rem 0;
     width: 70%;
     
+}
+
+.header-right img{
+    width: 90%;
 }
