@@ -37,3 +37,18 @@ section {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+/* Text Styles */
+.u-text-small {
+  font-size: 1.3rem;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.u-text-light {
+  color: var(--color-white);
+}
+
+.u-text-dark {
+  color: var(--dark-text);
+}
