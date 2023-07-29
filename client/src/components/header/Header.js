@@ -3,6 +3,7 @@ import "./Header.css";
 import  THR2 from "../../assets/THR2.jpg" ;
 import Button from '../UI/button/Button';
 import '../UI/button/Button.css';
+import { BsMouse } from "react-icons/bs";
 
 const Header = () => {
   return (
@@ -25,6 +26,11 @@ const Header = () => {
         <div className="header-right">
           <img src={THR2} alt="THR2" />
         </div>
+    </div>
+    <div className="floating-icon">
+      <a href="#features">
+        <BsMouse color='#fff' size={25} className='mouse'/>
+      </a>
     </div>
   </section>
   )
