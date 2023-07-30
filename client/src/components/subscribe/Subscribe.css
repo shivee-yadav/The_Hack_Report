@@ -1,0 +1,76 @@
+section#subscribe {
+    background: url(../../assets/cbs55.jpg);
+    text-align: center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--color-white);
+}
+
+.subscribe h2 {
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.4;
+    text-transform: uppercase;
+    margin: 1.5rem 0;
+    padding-bottom: 1rem;
+    
+}
+
+.subscribe p {
+    font-size: 1.5rem;
+}
+
+form > * {
+    width: 100%;
+    max-width: 50rem;
+    margin: 3rem auto;
+
+}
+
+form input {
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    outline: none;
+    width: 80%;
+    display: flex;
+    margin-bottom: 1rem;
+    margin-left: 50px;
+}
+
+form button {
+    padding: 1rem;
+    background: var(--form-button);
+    border: 1px solid var(--form-button) ;
+    border-radius:  5px ;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icon {
+    margin: 2rem;
+    padding: 1rem;
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.social-icon:hover {
+    background: var(--light-blue);
+}
