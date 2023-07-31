@@ -3,7 +3,7 @@ import React from 'react'
 const Faq = () => {
   return (
     <div>
-      <h1>Faq</h1>
+      <h1>News</h1>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import React from 'react'
 const Download = () => {
   return (
     <div>
-      <h1>Download</h1>
+      <h1>Products</h1>
     </div>
   )
 }
