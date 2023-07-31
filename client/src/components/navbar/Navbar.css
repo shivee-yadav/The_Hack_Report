@@ -17,12 +17,14 @@
     font-size: 4rem;
     font-weight: 300;
     color: var(--color-white);
+    text-transform: uppercase;
     
 }
 
 .logo-text span {
     font-weight: 600;
     color: orangered;
+    text-transform: uppercase;
     
 }
 
