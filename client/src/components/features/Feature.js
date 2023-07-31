@@ -5,7 +5,7 @@ import { BsHexagon } from "react-icons/bs";
 
 const feature = ({icon,heading,text}) => {
   return (
-    <div className='feature'>
+    <div className='feature' data-aos="fade-up">
       <div className="feature-icon">
         <BsHexagon color='orangered' size={55} />
         <div className="inner-icon">
