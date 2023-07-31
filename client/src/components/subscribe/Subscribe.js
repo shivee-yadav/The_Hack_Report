@@ -11,7 +11,7 @@ const Subscribe = () => {
       <p>With the Internet spreading like wildfire and reaching every part of our daily life, more and more traffic is directed to websites in search for information.</p>
       <form >
         <div className="form-control">
-          <input type="text" placeholder='Enter your Name' />
+          <input type="text" placeholder='Enter your Name'  />
           <input type="text" placeholder='Enter your Email' />
           <input type="text" placeholder='Enter your phone number' />
           <input type="text" placeholder='Message' />

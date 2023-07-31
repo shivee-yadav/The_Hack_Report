@@ -32,12 +32,13 @@ form input {
     background: transparent;
     border: 1px solid white;
     border-radius: 5px;
-    color: white;
     outline: none;
     width: 80%;
     display: flex;
     margin-bottom: 1rem;
     margin-left: 50px;
+    color: var(--color-white);
+    
 }
 
 form button {
@@ -48,6 +49,10 @@ form button {
     color: white;
     font-size: 1.6rem;
     font-weight: 500;
+}
+
+form button:hover {
+    background: orangered;
 }
 
 .social-icons {
@@ -72,5 +77,5 @@ form button {
 }
 
 .social-icon:hover {
-    background: var(--light-blue);
+    background: orangered;
 }

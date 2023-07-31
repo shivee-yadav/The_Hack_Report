@@ -11,7 +11,9 @@
 }
 
 .features-left img {
-    width: 65%;
+    width: 60%;
+    border: 4px solid orangered;
+    border-radius: 5%;
 }
 
 .features-right {
