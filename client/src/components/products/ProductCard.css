@@ -1,23 +1,25 @@
 .card {
-    width: 28rem;
-    height: 30rem;
-    padding: 2rem;
+    width: 44rem;
+    height: 36rem;
+    padding: 1.5rem;
     box-shadow: -10px -5px 5px lightgray ;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-   background: rgb(232, 241, 244);
-   flex-wrap: wrap;
+    background: rgb(232, 241, 244);
+    flex-wrap: wrap;
+    margin: 2rem;
 }
 
 .card:before {
     content: '';
     position: absolute;
     bottom: 0; right: 0;
-    border-bottom: 80px solid rgb(196, 214, 255);;
+    border-bottom: 80px solid white;
     border-left: 80px solid rgb(232, 241, 244);
     width: 0;
+    
 
 }
 
@@ -27,8 +29,9 @@
     height: 10rem;
     position: absolute;
     z-index: 2;
-    top: -50px; 
+    top: -60px; 
     align-self: center;
+    padding-left: 2rem;
    
 }
 

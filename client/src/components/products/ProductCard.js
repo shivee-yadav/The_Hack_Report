@@ -5,17 +5,17 @@ import "../UI/button/Button.css";
 
 
 
-const ProductCard = () => {
+const ProductCard = ({img,heading,text}) => {
   return (
    
     <div class="card" >
-  <img class="card-img-top" src="https://www.bugcrowd.com/wp-content/uploads/2022/04/icon-bug-bounty.svg" alt="Card image cap"/>
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
+      <div class="card-img-top">{img}</div>
+      <div class="card-body">
+      <h5 class="card-title">{heading}</h5>
+      <p class="card-text">{text}</p>
+    </div>
     <Button text={"Learn More"} btnClass={"btn-orange"} href={"#faq"} />
-  </div>
+    </div>
 
 
   );
