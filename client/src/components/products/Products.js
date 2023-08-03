@@ -5,8 +5,9 @@ import ProductCard from './ProductCard';
 
 const Products = () => {
   return (
-    <div>
-      <ProductCard />
+    <div className='container products'>
+       <ProductCard />
+     
     </div>
   )
 }
