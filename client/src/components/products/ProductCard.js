@@ -14,7 +14,10 @@ const ProductCard = ({img,heading,text}) => {
       <h5 class="card-title">{heading}</h5>
       <p class="card-text">{text}</p>
     </div>
+    <div className="button">
     <Button text={"Learn More"} btnClass={"btn-orange"} href={"#faq"} />
+    </div>
+    
     </div>
 
 
