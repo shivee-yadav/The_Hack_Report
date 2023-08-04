@@ -1,6 +1,6 @@
 .card {
     width: 44rem;
-    height: 36rem;
+    height: 30rem;
     padding: 1.5rem;
     box-shadow: -10px -5px 5px lightgray ;
     position: relative;
@@ -10,6 +10,7 @@
     background: rgb(232, 241, 244);
     flex-wrap: wrap;
     margin: 2rem;
+   
 }
 
 .card:before {
@@ -22,6 +23,8 @@
     
 
 }
+
+
 
 
 .card-img-top{
@@ -48,5 +51,14 @@
     
     padding-right: 3rem;
 }
+
+.card-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
 
 
