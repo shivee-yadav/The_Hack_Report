@@ -4,14 +4,19 @@
     align-items: center;
     flex-direction: row;
    
+  
 
 
 }
 
+
+
 .out-title {
-    font-size: 4rem;
-    padding-bottom: 2rem;
+    font-size: 5rem;
+    font-weight: 600;
+    padding-bottom: 4rem;
     text-transform: uppercase;
+
 }
 
 

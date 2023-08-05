@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(232, 241, 244);
+    background: rgb(221, 245, 248);
     flex-wrap: wrap;
     margin: 2rem;
    
@@ -18,7 +18,7 @@
     position: absolute;
     bottom: 0; right: 0;
     border-bottom: 80px solid white;
-    border-left: 80px solid rgb(232, 241, 244);
+    border-left: 80px solid rgb(221, 245, 248);
     width: 0;
     
 
@@ -38,13 +38,22 @@
    
 }
 
+.card-title {
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    
+}
 
 
 .card-body {
     margin-top: 4rem;
     margin-bottom: 2rem;
     font-size: medium;
-    
+   
 }
 
 .button {

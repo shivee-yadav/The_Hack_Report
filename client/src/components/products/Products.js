@@ -8,8 +8,7 @@ const Products = () => {
   return (
     <section id='products'>
       <div className="container products">
-        <div className="u-title">
-          
+        <div className="prod u-title">
           <h2>our products</h2>
           <p className="out-title">
           See security differently in multiple ways
