@@ -1,0 +1,31 @@
+.news-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+   
+  
+
+
+}
+
+
+
+.out-title {
+    font-size: 4rem;
+    font-weight: 600;
+    padding-bottom: 4rem;
+    text-transform: uppercase;
+
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+    .news-right {
+        flex-direction: column;
+    
+    }
+    
+}
