@@ -1,24 +1,22 @@
 
-
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './Pages/Home';
+import Signin from './Pages/Signin';
+import Signup from './Pages/Signup';
 
-import {Navbar, Header, Features, Products, Subscribe, News, Footer,UI} from "./components"
+
 
 function App() {
   return (
-    <main >
-      
-      <header className="header-bg">
-        <Navbar />
-        <Header />
-      </header>
-      <Features />
-      <Products />
-      <News />
-      <Subscribe />
-      <Footer />
-
-    </main>
+    <div className="App">
+      <Routes>
+      <Route path="/" element={<Home/>} />
+      {/* <Route path="/signin" element={<Signin/>} />
+      <Route path="/signup" element={<Signup/>} /> */}
+      </Routes>
+      </div>
   );
 }
 

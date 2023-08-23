@@ -1,8 +1,12 @@
 import express from "express";
 import passport from "passport";
 
-import { UserModel } from "../../Database/User";
-import { ValidateSignup, ValidateSignin } from "../../validation/auth";
+import { UserModel , validate} from "../../Database/User";
+//import { ValidateSignup, ValidateSignin } from "../../validation/auth";
+const bcrypt = require("bcrypt");
+const auth = require("../../middleware/auth");
+const admin = require("../../middleware/admin");
+const validObjectId = require("../../middleware/validObjectId");
 
 const Router = express.Router();
 
@@ -15,22 +19,27 @@ Method         POST
 */
 
 Router.post("/signup", async(req,res) => {
-    try {
+    const { error } = validate(req.body);
+	if (error) return res.status(400).send({ message: error.details[0].message });
 
-       await ValidateSignup(req.body.credentials);
+	const user = await UserModel.findOne({ email: req.body.email });
+	if (user)
+		return res
+			.status(403)
+			.send({ message: "User with given email already Exist!" });
 
-       await UserModel.findEmailAndPhone(req.body.credentials);
+	const salt = await bcrypt.genSalt(Number(process.env.SALT));
+	const hashPassword = await bcrypt.hash(req.body.password, salt);
+	let newUser = await new UserModel({
+		...req.body,
+		password: hashPassword,
+	}).save();
 
-        const newUser = await UserModel.create(req.body.credentials);
-
-        const token = newUser.generateJwtToken();
-
-        return res.status(200).json({ token });
-        
-    } catch (error) {
-        res.status(500).json({error: error.message})
-        
-    }
+	newUser.password = undefined;
+	newUser.__v = undefined;
+	res
+		.status(200)
+		.send({ data: newUser, message: "Account created successfully" });
 });
 
 /*
@@ -41,52 +50,50 @@ Access         Public
 Method         POST
 */
 
-Router.post("/signin", async(req,res) => {
-    try {
+Router.post("/signin", async (req, res) => {
+	const user = await UserModel.findOne({ email: req.body.email });
+	if (!user)
+		return res.status(400).send({ message: "invalid email or password!" });
 
-       await ValidateSignin(req.body.credentials);
+	const validPassword = await bcrypt.compare(req.body.password, user.password);
+	if (!validPassword)
+		return res.status(400).send({ message: "Invalid email or password!" });
 
-       const user =await UserModel.findEmailAndPassword(req.body.credentials);
-
-        const token = user.generateJwtToken();
-
-        return res.status(200).json({ token, status:"success" });
-        
-    } catch (error) {
-        res.status(500).json({error: error.message})
-        
-    }
+	const token = user.generateAuthToken();
+	res.status(200).send({ data: token, message: "Signing in please wait..." });
 });
 
-/*
-Route          /google
-Des             google signin 
-Params         None
-Access         Public
-Method         GET
-*/
+//get all users
+Router.get("/", admin, async (req, res) => {
+    const users = await UserModel.find().select("-password -__v");
+    res.status(200).send({data:users});
 
-Router.get("/google", passport.authenticate("google", {
-    scope: [
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email"
-    ]
-}));
+})
 
-/*
-Route      /google/callback
-Descrip    google signin callback
-Params     None
-Access     Public
-Method     GET
-*/
+//get user by id
+Router.get("/:id", [validObjectId,auth], async (req, res) => {
+    const user = await UserModel.findById(req.params.id).select("-password -__v");
+    res.status(200).send({data:user});
 
-Router.get("/google/callback", passport.authenticate("google", {failureRedirect: "/"}),
-(req,res) => {
-  return res.json({token: req.session.passport.user.token});
-}
+})
 
-);
+//update user by id
+Router.put("/:id", [validObjectId,auth], async (req, res) => {
+    const user = await UserModel.findByIdAndUpdate(
+        req.params.id,
+        {$set: req.body},
+        { new: true}
+        ).select("-password -__v");
+    res.status(200).send({data:user});
+
+})
+
+//delete user by id
+Router.delete("/:id", [validObjectId,auth], async (req, res) => {
+    await UserModel.findByIdAndDelete(req.params.id);
+    res.status(200).send({message: "Successfully deleted"});
+
+})
 
 
 

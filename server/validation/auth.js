@@ -7,7 +7,7 @@ export const ValidateSignup = (UserData) => {
 
     const Schema = joi.object({
         fullname: joi.string().required().min(3).max(32) ,
-        email: joi.string().email() ,
+        email: joi.string().email().required() ,
         password: joi.string().pattern(passwordPattern).min(6).label("Password").messages({
             "string.pattern.base":
             "{#label} must contain at least one uppercase letter, one lowercase letter, one digit, and one special character (#?!@$%^&*-).", 
