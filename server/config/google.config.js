@@ -27,14 +27,14 @@ export default (passport) => {
                
                 if(user) {
 
-                    const token = user.generateJwtToken();//generate the token
+                    const token = user.generateAuthToken();//generate the token
                     //return user
                     done(null, {user,token});
                 } else{
                     //creating new user
                     const user = await UserModel.create(newUser);
 
-                    const token = user.generateJwtToken();//generate the token
+                    const token = user.generateAuthToken();//generate the token
                     //return user
                     done(null, {user,token});
                 }
