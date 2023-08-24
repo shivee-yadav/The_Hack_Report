@@ -34,7 +34,7 @@ googleAuthConfig(passport);
 
 //API calls
 app.use("/api", Auth);
-app.use("/auth", googleAuth);
+app.use("/", googleAuth);
 
 app.get("/", (req,res) => {
     res.json({message: "SetUp Success yayy!!!"});

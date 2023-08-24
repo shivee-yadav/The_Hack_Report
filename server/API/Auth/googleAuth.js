@@ -14,6 +14,8 @@ Method         GET
 
 Router.get("/google", passport.authenticate("google", {
     scope: [
+      "profile",
+      "email",
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/userinfo.email"
     ]
@@ -27,7 +29,9 @@ Access     Public
 Method     GET
 */
 
-Router.get("/google/callback", passport.authenticate("google", {failureRedirect: "/"}),
+Router.get("/google/callback", passport.authenticate("google", {
+    failureRedirect: "/"
+}),
 (req,res) => {
   return res.json({token: req.session.passport.user.token});
 }

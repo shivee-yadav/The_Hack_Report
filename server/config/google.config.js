@@ -10,7 +10,8 @@ export default (passport) => {
         new GoogleStrategy({
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: "http://localhost:4000/auth/google/callback"
+            callbackURL: "http://localhost:4000/google/callback",
+            scope: ['profile', 'email'],
         },
         async(accessToken, refreshToken, profile, done) => {
             //creating a new user
