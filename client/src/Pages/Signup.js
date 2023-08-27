@@ -6,6 +6,11 @@ import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import "./signup.styles.css";
+import google from "../assets/google.png";
+import signup from "../assets/signup.jpg";
+
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -19,6 +24,14 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [pic, setPic] = useState();
   const [picLoading, setPicLoading] = useState(false);
+
+  const googleAuth = () => {
+    window.open(
+      `${process.env.REACT_APP_API_URL}/google`,
+      "_self"
+    );
+  };
+
 
   const submitHandler = async () => {
     setPicLoading(true);
@@ -51,7 +64,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/auth/signup",
+        "/api/signup",
         {
           name,
           email,
@@ -130,71 +143,88 @@ const Signup = () => {
   };
 
   return (
-    <VStack spacing="5px" >
-      <FormControl id="first-name" isRequired>
-        <FormLabel>Name</FormLabel>
-        <Input
-          placeholder="Enter Your Name"
-          onChange={(e) => setName(e.target.value)}
-        />
-      </FormControl>
-      <FormControl id="email" isRequired>
-        <FormLabel>Email Address</FormLabel>
-        <Input
-          type="email"
-          placeholder="Enter Your Email Address"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </FormControl>
-      <FormControl id="password" isRequired>
-        <FormLabel>Password</FormLabel>
-        <InputGroup size="md">
-          <Input
-            type={show ? "text" : "password"}
-            placeholder="Enter Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
+    <div className="container">
+      <h1 className="heading">Sign Up Form</h1>
+      <div className="form_container">
+        <div className="left">
+          <img className="img" src={signup} alt="login" />
+        </div>
+        <div className="right">
+          <h2 className="from_heading">Create Account</h2>
+          <VStack>
+            <FormControl id="first-name" isRequired>
+              <FormLabel>Name</FormLabel>
+              <Input
+                className="input"
+                placeholder="Enter Your Name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </FormControl>
+            <FormControl id="email" isRequired>
+              <FormLabel>Email Address</FormLabel>
+              <Input
+              className="input"
+                type="email"
+                placeholder="Enter Your Email Address"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormControl>
+            <FormControl id="password" isRequired>
+              <FormLabel>Password</FormLabel>
+              <InputGroup size="md">
+                <Input
+                className="input"
+                  type={show ? "text" : "password"}
+                  placeholder="Enter Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <InputRightElement width="4.5rem" className="show" > 
+                  <Button h="2rem" size="sm" onClick={handleClick}>
+                    {show ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+            </FormControl>
+            <FormControl id="password" isRequired>
+              <FormLabel>Confirm Password</FormLabel>
+              <InputGroup size="md">
+                <Input
+                className="input"
+                  type={show ? "text" : "password"}
+                  placeholder="Confirm password"
+                  onChange={(e) => setConfirmpassword(e.target.value)}
+                />
+                <InputRightElement width="4.5rem" className="show">
+                  <Button h="2rem" size="sm"  onClick={handleClick}>
+                    {show ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+            </FormControl>
+
+            <Button
+              className="btn"
+              colorScheme="blue"
+              width="100%"
+              style={{ marginTop: 15 }}
+              onClick={submitHandler}
+              isLoading={picLoading}
+            >
+              Sign Up
             </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-      <FormControl id="password" isRequired>
-        <FormLabel>Confirm Password</FormLabel>
-        <InputGroup size="md">
-          <Input
-            type={show ? "text" : "password"}
-            placeholder="Confirm password"
-            onChange={(e) => setConfirmpassword(e.target.value)}
-          />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-      <FormControl id="pic">
-        <FormLabel>Upload your Picture</FormLabel>
-        <Input
-          type="file"
-          p={1.5}
-          accept="image/*"
-          onChange={(e) => postDetails(e.target.files[0])}
-        />
-      </FormControl>
-      <Button
-        colorScheme="blue"
-        width="100%"
-        style={{ marginTop: 15 }}
-        onClick={submitHandler}
-        isLoading={picLoading}
-      >
-        Sign Up
-      </Button>
-    </VStack>
+            <p className="text">or</p>
+          <button className="google_btn" onClick={googleAuth}>
+            <img src={google} alt="google icon" />
+            <span>Sign in with Google</span>
+          </button>
+          <p className="text">
+            Already Have  an Account ? <Link to="/signin">Sign In</Link>
+          </p>
+          </VStack>
+        </div>
+      </div>
+    </div>
+
   );
 };
 

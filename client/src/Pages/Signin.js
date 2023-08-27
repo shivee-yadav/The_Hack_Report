@@ -6,7 +6,10 @@ import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from 'react-router-dom';
-//import { ChatState } from "../../Context/ChatProvider";
+import { Link } from "react-router-dom";
+import "./signin.styles.css";
+import google from "../assets/google.png";
+import login from "../assets/login.jpg";
 
 const Signin = () => {
   const [show, setShow] = useState(false);
@@ -17,7 +20,15 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-//   const { setUser } = ChatState();
+
+
+
+  const googleAuth = () => {
+    window.open(
+      `${process.env.REACT_APP_API_URL}/google`,
+      "_self"
+    );
+  };
 
   const submitHandler = async () => {
     setLoading(true);
@@ -41,7 +52,7 @@ const Signin = () => {
       };
 
       const { data } = await axios.post(
-        "/auth/signin",
+        "/api/signin",
         { email, password },
         config
       );
@@ -53,7 +64,7 @@ const Signin = () => {
         isClosable: true,
         position: "bottom",
       });
-    //   setUser(data);
+      //   setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       navigate("/");
@@ -71,53 +82,64 @@ const Signin = () => {
   };
 
   return (
-    <VStack spacing="10px">
-      <FormControl id="email" isRequired>
-        <FormLabel>Email Address</FormLabel>
-        <Input
-          value={email}
-          type="email"
-          placeholder="Enter Your Email Address"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </FormControl>
-      <FormControl id="password" isRequired>
-        <FormLabel>Password</FormLabel>
-        <InputGroup size="md">
-          <Input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type={show ? "text" : "password"}
-            placeholder="Enter password"
-          />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Hide" : "Show"}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-      <Button
-        colorScheme="blue"
-        width="100%"
-        style={{ marginTop: 15 }}
-        onClick={submitHandler}
-        isLoading={loading}
-      >
-        Signin
-      </Button>
-      <Button
-        variant="solid"
-        colorScheme="red"
-        width="100%"
-        onClick={() => {
-          setEmail("guest@example.com");
-          setPassword("123456");
-        }}
-      >
-        Get Guest User Credentials
-      </Button>
-    </VStack>
+    <div className="container">
+      <h1 className="heading">Log in Form</h1>
+      <div className="form_container">
+        <div className="left">
+          <img className="img" src={login} alt="login" />
+        </div>
+      <div className="right">
+        <VStack spacing="10px">
+          <FormControl id="email" isRequired>
+            <FormLabel>Email Address</FormLabel>
+            <Input
+              className="input"
+              value={email}
+              type="email"
+              placeholder="Enter Your Email Address"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </FormControl>
+          <FormControl id="password" isRequired>
+            <FormLabel>Password</FormLabel>
+            <InputGroup size="md">
+              <Input
+                className="input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type={show ? "text" : "password"}
+                placeholder="Enter password"
+              />
+              <InputRightElement width="4.5rem" className="show">
+                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                  {show ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </FormControl>
+          <Button
+            className="btn"
+            colorScheme="blue"
+            width="100%"
+            style={{ marginTop: 15 }}
+            onClick={submitHandler}
+            isLoading={loading}
+          >
+            Signin
+          </Button>
+          <p className="text">or</p>
+          <button className="google_btn" onClick={googleAuth}>
+            <img src={google} alt="google icon" />
+            <span>Sing in with Google</span>
+          </button>
+          <p className="text">
+            New Here ? <Link to="/signup">Sign Up</Link>
+          </p>
+        </VStack>
+      </div>
+    </div>
+    </div>
+
   );
 };
 
