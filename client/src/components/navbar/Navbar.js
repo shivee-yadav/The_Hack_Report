@@ -5,6 +5,7 @@ import { AiOutlineBars } from "react-icons/ai";
 import { RiCloseLine } from "react-icons/ri";
 import Button from "../UI/button/Button";
 import "../UI/button/Button.css";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
           <li><a href="#">Home</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#download">Download</a></li>
-          <li><a href="#subscribe">Subscribe</a></li>
+          <li><Link to="/signup">Signup</Link></li>
           {/* <li className='nav-btn'><a href="#" className='btn btn-dark'>Get Started</a></li> */}
           <li className='nav-btn'><Button text={"Learn More"} btnClass={"btn-dark"} href={"#faq"} /></li>
         </ul>

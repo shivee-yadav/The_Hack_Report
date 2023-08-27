@@ -28,8 +28,8 @@ const Header = () => {
              and industries to strengthen their security. Unveil vulnerabilities, gain valuable insights, and protect your organization 
              from cyber threats.</p>
         <div className="header-cta">
-        <Button text={"Get Started"} btnClass={"btn-dark"} href={"#faq"} />
-        <Button text={"How it works"} btnClass={"btn-orange"} href={"#faq"} />
+        
+        <Button text={"Get Started"} btnClass={"btn-orange"} href={"/signup"} />
         </div>
         </div>
         <div className="header-right" data-aos="fade-left">

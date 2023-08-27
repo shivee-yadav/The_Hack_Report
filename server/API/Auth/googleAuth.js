@@ -13,14 +13,14 @@ Method         GET
 */
 
 Router.get("/google", passport.authenticate("google", {
-    scope: [
-      "profile",
-      "email",
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email",
-      
+  scope: [
+    "profile",
+    "email",
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email",
 
-    ]
+
+  ]
 }));
 
 /*
@@ -31,14 +31,26 @@ Access     Public
 Method     GET
 */
 
-Router.get("/google/callback", passport.authenticate("google", {
-    failureRedirect: "/"
-}),
-(req,res) => {
-  return res.json({token: req.session.passport.user.token});
-}
+Router.get("/google/callback", 
+passport.authenticate("google", {
+  failureRedirect: "/login/failed",
+  successRedirect: "http://localhost:3000",
+})
 
 );
+
+// Router.get("/logout", (req, res) => {
+// 	req.logout();
+// 	res.redirect(process.env.CLIENT_URL);
+// });
+
+// Router.get("/login/failed", (req, res) => {
+// 	res.status(401).json({
+// 		error: true,
+// 		message: "Log in failure",
+// 	});
+// });
+
 
 
 export default Router;
