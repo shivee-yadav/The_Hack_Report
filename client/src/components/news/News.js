@@ -3,6 +3,7 @@ import "./News.css";
 import "./NewsCard";
 import NewsCard from './NewsCard';
 import { newsList } from './data';
+import { Link } from 'react-router-dom';
 
 const News = () => {
 
@@ -36,7 +37,7 @@ const News = () => {
            ))
           }
         </div>
-     
+        <Link to="/newspage">More News</Link>
     </div>
   </section>
   )

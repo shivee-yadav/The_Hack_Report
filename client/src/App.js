@@ -5,6 +5,7 @@ import './App.css';
 import Home from './Pages/Home';
 import Signin from './Pages/Signin';
 import Signup from './Pages/Signup';
+import NewsPage from './Pages/NewsPage';
 
 
 
@@ -15,6 +16,7 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="/signin" element={<Signin/>} />
       <Route path="/signup" element={<Signup/>} />
+      <Route path="/newspage" element={<NewsPage/>} />
       </Routes>
       </div>
   );
