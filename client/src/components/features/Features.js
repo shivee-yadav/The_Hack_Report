@@ -11,10 +11,10 @@ const Features = () => {
   return (
     <section id='features'>
       <div className="container features">
-        <div className="u-title">
-          <BsFillBookmarkStarFill color='orangered' size={30} />
+        <div className="proc u-title">
+          {/* <BsFillBookmarkStarFill className="star" color='orangered' size={30}/> */}
           <h2>Core Features</h2>
-          <p className="u-text-small u-text-dark">
+          <p className="our-title">
           We are an independent software testing services company helping enterprises deliver unique user experience through next-gen software applications.
           </p>
         </div>

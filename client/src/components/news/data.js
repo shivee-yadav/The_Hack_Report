@@ -2,6 +2,7 @@ import  iconBugBounty from "../../assets/icon-bug-bounty.svg" ;
 import  iconAttack from "../../assets/icon-attack-surface-management.svg" ;
 import  iconPenTest from "../../assets/icon-penetration-testing.svg" ;
 import  iconVulnerability from "../../assets/icon-vulnerability-disclosure.svg" ;
+
 export const newsList = [
     {
       id: 1,

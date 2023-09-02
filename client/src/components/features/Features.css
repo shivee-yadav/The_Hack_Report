@@ -20,6 +20,15 @@
     flex: 1;
 }
 
+.our-title {
+    font-size: 2rem;
+    font-weight: 400;
+    padding-bottom: 4rem;
+    text-transform: uppercase;
+}
+
+
+
 @media screen and (max-width: 600px) {
     .features-content {
         flex-direction: column;
