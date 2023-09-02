@@ -169,3 +169,39 @@ a.btn-orange {
 
     
 }
+
+
+
+  
+  
+  button {
+    background: #000;
+    box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  ul {
+    list-style: none;
+    padding: unset;
+    margin: unset;
+  }
+  
+  li {
+    padding: 14px;
+    transition: all linear 0.3s;
+  }
+  
+  li:hover {
+    background: rgb(55, 108, 232);
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .dropdown-menu {
+    background: #fff;
+    box-shadow: 0px 10px 30px 0px rgba(197, 50, 10, 0.05);
+    transition: all linear 0.3s;
+  }

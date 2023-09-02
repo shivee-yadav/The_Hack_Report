@@ -6,6 +6,7 @@ import { RiCloseLine } from "react-icons/ri";
 import Button from "../UI/button/Button";
 import "../UI/button/Button.css";
 import { Link } from 'react-router-dom';
+import Dropdown from './Dropdown';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -13,6 +14,16 @@ const Navbar = () => {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   } 
+
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleMouseEnter = () => {
+    setDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setDropdownVisible(false);
+  };
 
 
   return (
@@ -39,6 +50,20 @@ const Navbar = () => {
           showMenu ? <RiCloseLine color="#fff" size={33} /> : <AiOutlineBars color="#fff" size={27} />
         }
       </div>
+      {/* <div className="App">
+      <header className="App-header">
+        <div
+          className="menu"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <button>Dropdown Menu</button>
+          
+          {isDropdownVisible && <Dropdown />}
+        </div>
+      </header>
+    </div> 
+  */}
     </nav>
   )
 };
