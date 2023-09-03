@@ -27,7 +27,7 @@
     background-color: white;
     box-shadow: 3px 4px 36px -6px rgba(0,0,0,0.4);
     border-radius: 50px;
-    margin-left: 88px;
+    margin-left: 160px;
 }
 
 .left {
@@ -39,7 +39,7 @@
 }
 
 .img {
-    width: 200%;
+    width: 300%;
     position: absolute;
 }
 
