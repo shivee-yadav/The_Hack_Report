@@ -10,6 +10,7 @@ import googleAuthConfig from "./config/google.config";
 
 import Auth from "./API/Auth/index";
 import googleAuth from "./API/Auth/googleAuth";
+import blogRoutes from "./API/blogRoutes";
 
 const session = require('express-session');
 const connection = require("./db");
@@ -41,6 +42,7 @@ googleAuthConfig(passport);
 //API calls
 app.use("/api", Auth);
 app.use("/", googleAuth);
+app.use("/blog", blogRoutes);
 
 app.get("/", (req,res) => {
     res.json({message: "SetUp Success yayy!!!"});
