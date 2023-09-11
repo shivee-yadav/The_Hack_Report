@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
     }],
     phoneNumber:[{type:Number}],
 	isAdmin: { type: Boolean, default: false },
+	blogs:[{type: mongoose.Types.ObjectId, ref: "Blog", required:true}]
 },
 { timestamps : true }//automatically created and updated
 );

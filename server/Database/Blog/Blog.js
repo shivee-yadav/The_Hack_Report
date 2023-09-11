@@ -7,7 +7,7 @@ const blogSchema = new mongoose.Schema({
     title: { type: String, required: true },
 	description: { type: String,  required: true },
 	image: { type: String },
-    user: {type: String, required: true}
+    user: {type: mongoose.Types.ObjectId,ref:"Users", required: true}
 },
 { timestamps : true }//automatically created and updated
 );

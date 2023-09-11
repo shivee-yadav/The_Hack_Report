@@ -1,8 +1,16 @@
 import express from "express";
 import { BlogModel , validate} from "../Database/Blog/Blog";
+import { UserModel } from "../Database/User";
+import mongoose, { mongo } from "mongoose";
+
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
+const validObjectId = require("../middleware/validObjectId");
+
 
 const Router = express.Router();
 
+//getting all the blogs
 Router.get("/", async(req,res,next) => {
     let blogs;
     try {
@@ -17,8 +25,25 @@ Router.get("/", async(req,res,next) => {
     return res.status(200).json({blogs});
 })
 
-Router.post("/add",async(req,res,next) => {
+//adding a blog
+
+Router.post("/add", auth ,async(req,res,next) => {
    const { title, description, image, user} = req.body;
+
+   let existingUser;
+
+   try {
+    existingUser = await UserModel.findById(user);
+    
+} catch (error) {
+    return console.log(error)
+    
+}
+
+if(!existingUser){
+    return res.status(400).json({message:"Unable to find User"});
+}
+
    const blog = new BlogModel({
     title,
     description,
@@ -26,17 +51,27 @@ Router.post("/add",async(req,res,next) => {
     user,
    });
 
-    try {
-        await blog.save(); 
-    } catch (error) {
-        return console.log(error)
-        
-    }
+   try {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await blog.save({session});
+    existingUser.blogs.push(blog);
+    await existingUser.save({session})
+    await session.commitTransaction();
+   } catch (error) {
+    console.log(error);
+    return res.status(500).json({message: error});
+
+   }
+
+   
     
     return res.status(200).json({blog});
 })
 
-Router.put("/update/:id",async(req,res,next) => {
+//updating a blog by it's id and user authentication
+
+Router.put("/update/:id",[validObjectId,auth], async(req,res,next) => {
 
    const { title, description, image} = req.body;
    const blogId = req.params.id;
@@ -61,7 +96,9 @@ Router.put("/update/:id",async(req,res,next) => {
     return res.status(200).json({blog});
 })
 
-Router.get("/:id", async(req,res,next) => {
+//getting a blog by it's id
+
+Router.get("/:id", validObjectId, async(req,res,next) => {
     const id=req.params.id;
     let blog;
     try {
@@ -76,8 +113,8 @@ Router.get("/:id", async(req,res,next) => {
     return res.status(200).json({blog});
 })
 
-
-Router.delete("/:id", async(req,res,next) => {
+//deleting a blog by it's id and user's authentication
+Router.delete("/:id",[validObjectId,auth], async(req,res,next) => {
     const id=req.params.id;
     let blog;
     try {
