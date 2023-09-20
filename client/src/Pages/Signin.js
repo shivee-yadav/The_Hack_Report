@@ -130,7 +130,7 @@ const Signin = () => {
           <p className="text">or</p>
           <button className="google_btn" onClick={googleAuth}>
             <img src={google} alt="google icon" />
-            <span>Sing in with Google</span>
+            <span>Sign in with Google</span>
           </button>
           <p className="text">
             New Here ? <Link to="/signup">Sign Up</Link>
